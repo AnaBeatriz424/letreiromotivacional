@@ -1,68 +1,30 @@
-/* Tela */
-html, body {
-  height: 100%;
-}
+/* Definindo largura e altura da tela */
 body {
   margin: 0;
-  background: linear-gradient(135deg, #74ebd5, #acb6e5);
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-  color: #fff;
-}
-
-/* Área principal com espaçamento livre em torno do letreiro */
-.tela {
-  height: 100vh;
-  width: 100vw;
-  display: grid;
-  place-items: center;
-  gap: 24px;
-  padding: 24px;
-  box-sizing: border-box;
-}
-
-/* Container do letreiro */
-.letreiro-container {
-  position: relative;
-  width: min(85vw, 1000px);
-  height: 140px;
-  border: 3px solid #fff;
-  border-radius: 18px;
-  background: rgba(255, 255, 255, 0.18);
-  overflow: hidden;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.22);
-}
-
-/* Texto do letreiro grande e bonito */
-.letreiro-texto {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: clamp(28px, 4.5vw, 52px);
-  font-weight: 800;
-  letter-spacing: 0.02em;
-  color: #fff;
-  text-shadow: 2px 2px 10px rgba(0,0,0,0.45);
-  white-space: nowrap;
-  will-change: transform;
-}
-
-/* Controles */
-.controles {
+  padding: 0;
   display: flex;
-  gap: 12px;
-  align-items: center;
+  justify-content: center;   /* alinhamento horizontal */
+  align-items: center;       /* alinhamento vertical */
+  height: 100vh;             /* altura da tela */
+  width: 100vw;              /* largura da tela */
+  background-color: #f0f0f0;
 }
 
-button {
-  padding: 12px 20px;
-  font-weight: 700;
-  border: none;
-  border-radius: 12px;
-  background: #ffffff;
-  color: #333;
-  cursor: pointer;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
-  transition: transform 0.15s ease, background 0.2s ease, color 0.2s ease;
+/* Espaço livre em torno do letreiro */
+.container {
+  width: 80%;   /* espaço livre nas laterais */
+  height: 100px;
+  border: 2px solid #333;
+  overflow: hidden;
+  position: relative;
+  background-color: #fff;
 }
-button:hover { transform: translateY(-2px); }
-button:active { transform: translateY(0); }
+
+/* Texto do letreiro */
+.letreiro {
+  position: absolute;
+  white-space: nowrap;
+  font-size: 24px;
+  font-weight: bold;
+  color: #2c3e50;
+}
