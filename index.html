@@ -1,18 +1,27 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Letreiro Motivacional</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="letreiro-container">
-    <div class="letreiro-texto" id="texto">
-      🌟 Acredite em você! Grandes conquistas começam com pequenos passos. 🌟
-    </div>
-  </div>
+  <main class="tela">
+    <section class="letreiro-container">
+      <div class="letreiro-texto" id="texto">
+        🌟 Acredite em você! Grandes conquistas começam com pequenos passos. 🌟
+      </div>
+    </section>
 
-  <button id="trocarFrase">Trocar Frase</button>
+    <div class="controles">
+      <button id="trocarFrase">Trocar frase</button>
+      <label class="velocidade">
+        <span>Velocidade:</span>
+        <input type="range" id="velSlider" min="50" max="600" step="10" value="200" />
+      </label>
+    </div>
+  </main>
 
   <script src="script.js"></script>
 </body>
