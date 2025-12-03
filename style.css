@@ -1,50 +1,85 @@
+/* Tela */
+html, body {
+  height: 100%;
+}
 body {
   margin: 0;
-  padding: 0;
-  background: linear-gradient(135deg, #74ebd5, #ACB6E5);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  background: linear-gradient(135deg, #74ebd5, #acb6e5);
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  color: #fff;
+}
+
+/* Área principal com largura/altura definidas e espaçamento */
+.tela {
   height: 100vh;
   width: 100vw;
-  overflow: hidden;
-  font-family: Arial, sans-serif;
+  display: grid;
+  place-items: center;
+  gap: 24px;
+  padding: 24px; /* espaço livre em torno do letreiro */
+  box-sizing: border-box;
 }
 
+/* Container do letreiro */
 .letreiro-container {
   position: relative;
-  width: 80%;
-  height: 100px;
+  width: min(80vw, 900px);
+  height: 110px;
   border: 3px solid #fff;
-  border-radius: 15px;
-  background: rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.18);
   overflow: hidden;
-  margin-bottom: 20px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.22);
 }
 
+/* Texto do letreiro */
 .letreiro-texto {
   position: absolute;
-  font-size: 2em;
-  font-weight: bold;
+  top: 50%;
+  transform: translateY(-50%); /* centraliza verticalmente */
+  font-size: clamp(20px, 2.4vw, 32px);
+  font-weight: 800;
+  letter-spacing: 0.02em;
   color: #fff;
-  text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+  text-shadow: 2px 2px 8px rgba(0,0,0,0.45);
   white-space: nowrap;
+  will-change: transform;
+}
+
+/* Controles */
+.controles {
+  display: flex;
+  gap: 12px;
+  align-items: center;
 }
 
 button {
-  padding: 10px 20px;
-  font-size: 1em;
-  font-weight: bold;
+  padding: 10px 18px;
+  font-weight: 700;
   border: none;
-  border-radius: 10px;
-  background: #fff;
+  border-radius: 12px;
+  background: #ffffff;
   color: #333;
   cursor: pointer;
-  transition: 0.3s;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+  transition: transform 0.15s ease, background 0.2s ease, color 0.2s ease;
 }
+button:hover { transform: translateY(-2px); }
+button:active { transform: translateY(0); }
 
-button:hover {
-  background: #333;
-  color: #fff;
+.velocidade {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.18);
+  padding: 8px 12px;
+  border-radius: 12px;
+  backdrop-filter: blur(6px);
+}
+.velocidade span {
+  font-weight: 700;
+}
+input[type="range"] {
+  width: 180px;
+  accent-color: #fff;
 }
