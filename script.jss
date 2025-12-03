@@ -1,25 +1,41 @@
 const texto = document.getElementById("texto");
 const container = document.querySelector(".letreiro-container");
+const botao = document.getElementById("trocarFrase");
 
-let posicao = 0;          // posição inicial
-let direcao = 1;          // 1 = direita, -1 = esquerda
-const velocidade = 2;     // controle da velocidade (px por frame)
+let posicao = container.offsetWidth; // começa fora da tela à direita
+const velocidade = 2; // px por frame
 
+// Lista de frases motivacionais
+const frases = [
+  "🌟 Acredite em você! Grandes conquistas começam com pequenos passos. 🌟",
+  "💪 Nunca desista, pois cada esforço te aproxima da vitória. 💪",
+  "🚀 O sucesso é a soma de pequenos esforços repetidos diariamente. 🚀",
+  "✨ Você é mais forte do que imagina, siga em frente! ✨",
+  "🔥 Transforme seus sonhos em metas e suas metas em conquistas. 🔥"
+];
+
+let indiceFrase = 0;
+
+// Função de animação contínua
 function animar() {
-  const larguraContainer = container.offsetWidth;
-  const larguraTexto = texto.offsetWidth;
-
-  posicao += direcao * velocidade;
+  posicao -= velocidade;
   texto.style.left = posicao + "px";
 
-  // inverter direção ao chegar nas bordas
-  if (posicao + larguraTexto >= larguraContainer) {
-    direcao = -1; // volta para esquerda
-  } else if (posicao <= 0) {
-    direcao = 1;  // vai para direita
+  const larguraTexto = texto.offsetWidth;
+
+  // Quando o texto sai totalmente da tela à esquerda, reinicia à direita
+  if (posicao + larguraTexto < 0) {
+    posicao = container.offsetWidth;
   }
 
   requestAnimationFrame(animar);
 }
+
+// Trocar frase ao clicar no botão
+botao.addEventListener("click", () => {
+  indiceFrase = (indiceFrase + 1) % frases.length;
+  texto.textContent = frases[indiceFrase];
+  posicao = container.offsetWidth; // reinicia posição
+});
 
 animar();
