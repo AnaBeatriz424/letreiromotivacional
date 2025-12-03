@@ -20,6 +20,9 @@ body {
 
 .letreiro {
   position: absolute;
+  left: 0;              /* posição inicial */
+  top: 50%;             /* centraliza verticalmente */
+  transform: translateY(-50%);
   white-space: nowrap;
   font-size: 24px;
   font-weight: bold;
