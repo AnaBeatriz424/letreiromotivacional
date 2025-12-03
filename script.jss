@@ -2,7 +2,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const texto = document.getElementById("texto");
   const container = document.querySelector(".letreiro-container");
   const botao = document.getElementById("trocarFrase");
-  const velSlider = document.getElementById("velSlider");
 
   // Frases motivacionais
   const frases = [
@@ -17,33 +16,35 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let indiceFrase = 0;
 
+  // Velocidade fixa e suave (px por segundo)
+  const speedPxPerSec = 220;
+
   // Estado da animação
   let x;                 // posição atual (px)
   let larguraTexto = 0;  // largura do texto atual
   let larguraContainer = 0; // largura do container
   let lastTs = 0;        // timestamp do frame anterior
-  let speedPxPerSec = parseInt(velSlider.value, 10); // velocidade em px/s
   let rafId = null;
 
-  // Inicializa dimensões e posição
+  // Medir e posicionar o texto fora da borda direita
   function medir() {
     larguraContainer = container.clientWidth;
+    // força reflow antes de medir o scrollWidth
+    texto.style.transform = "translate(0px, -50%)";
     larguraTexto = texto.scrollWidth;
-    // Começa fora da tela, à direita
-    x = larguraContainer;
+    x = larguraContainer; // começa fora da tela (à direita)
     texto.style.transform = `translate(${x}px, -50%)`;
   }
 
-  // Loop de animação usando tempo real (suave e independente de FPS)
+  // Loop de animação contínua
   function loop(ts) {
     if (!lastTs) lastTs = ts;
-    const dt = (ts - lastTs) / 1000; // segundos desde o último frame
+    const dt = (ts - lastTs) / 1000; // segundos
     lastTs = ts;
 
-    // Move para a esquerda
     x -= speedPxPerSec * dt;
 
-    // Quando o texto saiu totalmente à esquerda, reinicia à direita
+    // Reinicia à direita quando sair totalmente à esquerda
     if (x + larguraTexto < 0) {
       x = larguraContainer;
     }
@@ -52,17 +53,12 @@ document.addEventListener("DOMContentLoaded", () => {
     rafId = requestAnimationFrame(loop);
   }
 
-  // Trocar frase ao clicar
+  // Trocar frase e recalcular medidas
   botao.addEventListener("click", () => {
     indiceFrase = (indiceFrase + 1) % frases.length;
     texto.textContent = frases[indiceFrase];
-    medir();          // recalcula largura
-    lastTs = 0;       // reseta tempo para suavidade
-  });
-
-  // Ajustar velocidade via slider
-  velSlider.addEventListener("input", () => {
-    speedPxPerSec = parseInt(velSlider.value, 10);
+    medir();
+    lastTs = 0;
   });
 
   // Recalcular ao redimensionar a janela
@@ -70,8 +66,7 @@ document.addEventListener("DOMContentLoaded", () => {
     medir();
   });
 
-  // Garantir que fonte e layout estejam prontos antes de medir
-  // Usa requestAnimationFrame para esperar próximo ciclo de pintura
+  // Inicialização confiável após pintura
   requestAnimationFrame(() => {
     medir();
     rafId = requestAnimationFrame(loop);
