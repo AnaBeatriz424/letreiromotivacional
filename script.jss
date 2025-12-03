@@ -1,30 +1,38 @@
-body {
-  margin: 0;
-  padding: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  width: 100vw;
-  background-color: #f0f0f0;
+const letreiro = document.querySelector('.letreiro');
+const container = document.querySelector('.container');
+
+// Lista de frases motivacionais
+const frases = [
+  "🌟 Acredite em você e vá além! 🌟",
+  "🚀 O sucesso começa com um passo! 🚀",
+  "💡 Nunca desista dos seus sonhos! 💡",
+  "🔥 A persistência supera qualquer obstáculo! 🔥",
+  "🌈 Cada dia é uma nova oportunidade! 🌈"
+];
+
+let fraseIndex = 0;
+let pos = container.offsetWidth; // começa fora da tela à direita
+const speed = 2; // velocidade
+
+// Inicializa com a primeira frase
+letreiro.textContent = frases[fraseIndex];
+
+function animar() {
+  pos -= speed; // movimento para a esquerda
+  letreiro.style.left = pos + 'px';
+
+  // Quando o texto sai totalmente da tela pela esquerda
+  if (pos < -letreiro.offsetWidth) {
+    // troca de frase
+    fraseIndex = (fraseIndex + 1) % frases.length;
+    letreiro.textContent = frases[fraseIndex];
+
+    // reinicia posição à direita
+    pos = container.offsetWidth;
+  }
+
+  requestAnimationFrame(animar);
 }
 
-.container {
-  width: 80%;
-  height: 100px;
-  border: 2px solid #333;
-  overflow: hidden;
-  position: relative;
-  background-color: #fff;
-}
-
-.letreiro {
-  position: absolute;
-  left: 0;              /* posição inicial */
-  top: 50%;             /* centraliza verticalmente */
-  transform: translateY(-50%);
-  white-space: nowrap;
-  font-size: 24px;
-  font-weight: bold;
-  color: #2c3e50;
-}
+// iniciar animação
+animar();
