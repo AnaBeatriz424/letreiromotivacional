@@ -1,34 +1,22 @@
-/* Define largura e altura da tela */
-body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-    background-color: #111;
+const letreiro = document.getElementById("letreiro");
+const container = document.getElementById("container");
+
+let pos = 0;            // posição inicial
+let direction = 1;      // 1 = direita, -1 = esquerda
+let velocidade = 2;     // controle da velocidade
+
+function animarLetreiro() {
+    const maxPos = container.offsetWidth - letreiro.offsetWidth;
+
+    pos += direction * velocidade;
+
+    if (pos >= maxPos || pos <= 0) {
+        direction *= -1; // inverte direção ao chegar na borda
+    }
+
+    letreiro.style.left = pos + "px";
+
+    requestAnimationFrame(animarLetreiro);
 }
 
-/* Espaço onde o letreiro se movimenta */
-#container {
-    width: 80%;
-    height: 80px;
-    border: 3px solid #fff;
-    overflow: hidden;
-    position: relative;
-    background-color: #222;
-
-    /* Espaço livre em torno do letreiro */
-    padding: 10px;
-}
-
-/* Estilo do letreiro */
-#letreiro {
-    position: absolute;
-    font-size: 28px;
-    color: #00ffea;
-    font-family: Arial, Helvetica, sans-serif;
-
-    /* Alinhamento do texto dentro do letreiro */
-    text-align: center;
-    white-space: nowrap;
-}
+animarLetreiro();
