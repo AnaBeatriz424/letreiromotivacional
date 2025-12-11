@@ -1,53 +1,60 @@
 body {
-    /* (d) Largura e altura da tela: Ocupa toda a viewport */
+    /* (d) Largura e altura da tela */
     width: 100vw;
     height: 100vh;
     margin: 0;
     display: flex;
     justify-content: center;
     align-items: center;
-    /* MUDANÇA: Fundo da página mais claro */
-    background-color: #e9ecef; 
-    font-family: Arial, sans-serif;
+    /* CORREÇÃO: Fundo da página claro */
+    background-color: #f0f4f8; 
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .container {
     width: 80%;
-    height: 200px;
-    /* MUDANÇA: Fundo do letreiro */
-    background-color: #1e3751; /* Azul marinho escuro */
+    height: 150px; /* Altura ajustada */
+    /* CORREÇÃO: Fundo do letreiro escuro e elegante (bom contraste) */
+    background-color: #0d47a1; /* Azul escuro vibrante */
     border: 5px solid #ffcc00;
-    padding: 20px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    /* (e) Espaço livre em torno do letreiro */
+    padding: 15px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
 }
 
 .marquee-wrapper {
+    /* Esconde o texto que está fora da área visível */
     overflow: hidden;
     width: 100%;
     height: 100%;
     display: flex;
-    align-items: center;
+    /* (f) Alinhamento: Centraliza o texto verticalmente */
+    align-items: center; 
 }
 
 .marquee {
     display: inline-block;
-    white-space: nowrap;
-    font-size: 3em;
-    /* MUDANÇA: Cor do texto (Amarelo vibrante para alto contraste) */
-    color: #ffeb3b; 
-    font-weight: bold;
+    white-space: nowrap; /* Impede quebra de linha */
+    font-size: 3.5em; /* Aumenta o tamanho da fonte */
+    /* CORREÇÃO: Texto de cor muito clara para alto contraste */
+    color: #ffffff; /* Branco Puro */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    font-weight: 900;
 
-    /* AQUI ESTÁ A CHAVE: Garante que a animação seja aplicada */
-    animation: slide-marquee 15s linear infinite alternate; 
+    /* (g) Controle de Velocidade e Animação */
+    /* CORREÇÃO CRÍTICA: Aplica a animação corretamente */
+    animation: slide-marquee 20s linear infinite alternate; 
+    /* Duração 20s (velocidade ajustada), 'alternate' garante a volta */
 }
 
-/* * Verifica se os Keyframes estão definidos corretamente * */
+/* @keyframes para o movimento de ida e volta */
 @keyframes slide-marquee {
-    /* Ponto de partida: Letreiro completamente fora da tela pela direita */
+    /* 0% (Início): Fora da tela, à esquerda. 
+       Isso faz o texto deslizar da esquerda para a direita (entrando) */
     0% {
         transform: translateX(100%);
     }
-    /* Ponto de chegada: Letreiro completamente fora da tela pela esquerda */
+    /* 100% (Fim): Fora da tela, à direita */
     100% {
         transform: translateX(-100%); 
     }
