@@ -1,5 +1,7 @@
+/* ARQUIVO: script.js */
+
 // (c) Frase motivacional
-const fraseMotivacional = "✨ Sucesso é a soma de pequenos esforços repetidos dia após dia. Mantenha o foco! 🚀";
+const fraseMotivacional = "🌟 A persistência realiza o impossível. Não desista do seu código! 💡";
 
 const marqueeElement = document.getElementById('marqueeText');
 

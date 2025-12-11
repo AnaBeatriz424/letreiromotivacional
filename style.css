@@ -1,3 +1,5 @@
+/* ARQUIVO: style.css */
+
 body {
     /* (d) Largura e altura da tela */
     width: 100vw;
@@ -6,55 +8,54 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    /* CORREÇÃO: Fundo da página claro */
+    /* Fundo claro para contraste */
     background-color: #f0f4f8; 
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .container {
-    width: 80%;
-    height: 150px; /* Altura ajustada */
-    /* CORREÇÃO: Fundo do letreiro escuro e elegante (bom contraste) */
-    background-color: #0d47a1; /* Azul escuro vibrante */
-    border: 5px solid #ffcc00;
+    width: 85%; /* Área do letreiro */
+    height: 120px;
+    /* Fundo escuro para alto contraste */
+    background-color: #1a237e; /* Azul Marinho Escuro */
+    border: 5px solid #ffeb3b; /* Borda Amarela */
     /* (e) Espaço livre em torno do letreiro */
-    padding: 15px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+    padding: 10px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6);
 }
 
 .marquee-wrapper {
-    /* Esconde o texto que está fora da área visível */
-    overflow: hidden;
+    /* CRÍTICO: Garante que o texto que sai da área seja escondido */
+    overflow: hidden; 
     width: 100%;
     height: 100%;
     display: flex;
-    /* (f) Alinhamento: Centraliza o texto verticalmente */
+    /* (f) Alinhamento: Centraliza o texto verticalmente dentro da área visível */
     align-items: center; 
 }
 
 .marquee {
     display: inline-block;
-    white-space: nowrap; /* Impede quebra de linha */
-    font-size: 3.5em; /* Aumenta o tamanho da fonte */
-    /* CORREÇÃO: Texto de cor muito clara para alto contraste */
-    color: #ffffff; /* Branco Puro */
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    white-space: nowrap; /* Não quebra a linha */
+    font-size: 3em; 
+    /* Cor do texto: Branco puro para o máximo de contraste */
+    color: #ffffff; 
     font-weight: 900;
-
-    /* (g) Controle de Velocidade e Animação */
-    /* CORREÇÃO CRÍTICA: Aplica a animação corretamente */
-    animation: slide-marquee 20s linear infinite alternate; 
-    /* Duração 20s (velocidade ajustada), 'alternate' garante a volta */
+    
+    /* (g) APLICAÇÃO CRÍTICA DA ANIMAÇÃO: */
+    /* Nome da animação | Velocidade (12s) | Linear | Infinito | Bidirecional (volta) */
+    animation: slide-marquee 12s linear infinite alternate; 
 }
 
-/* @keyframes para o movimento de ida e volta */
+/* DEFINIÇÃO DA ANIMAÇÃO */
 @keyframes slide-marquee {
-    /* 0% (Início): Fora da tela, à esquerda. 
-       Isso faz o texto deslizar da esquerda para a direita (entrando) */
+    /* 0% (Início): O texto está fora da tela pela direita. */
+    /* Isso faz com que ele "entre" pelo lado esquerdo. (b) Inicia da esquerda para a direita */
     0% {
         transform: translateX(100%);
     }
-    /* 100% (Fim): Fora da tela, à direita */
+    /* 100% (Fim): O texto está fora da tela pela esquerda. */
+    /* (a) Desliza até o outro lado */
     100% {
         transform: translateX(-100%); 
     }
