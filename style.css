@@ -1,61 +1,55 @@
 /* ARQUIVO: style.css */
 
 body {
-    /* (d) Largura e altura da tela */
+    /* Largura e altura da tela */
     width: 100vw;
     height: 100vh;
     margin: 0;
     display: flex;
     justify-content: center;
     align-items: center;
-    /* Fundo claro para contraste */
-    background-color: #f0f4f8; 
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f0f4f8; /* Fundo claro */
+    font-family: sans-serif;
 }
 
 .container {
-    width: 85%; /* Área do letreiro */
+    width: 85%; 
     height: 120px;
-    /* Fundo escuro para alto contraste */
-    background-color: #1a237e; /* Azul Marinho Escuro */
-    border: 5px solid #ffeb3b; /* Borda Amarela */
-    /* (e) Espaço livre em torno do letreiro */
-    padding: 10px;
+    background-color: #1a237e; /* Fundo escuro (alto contraste) */
+    border: 5px solid #ffeb3b; 
+    padding: 10px; /* Espaço livre */
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6);
 }
 
 .marquee-wrapper {
-    /* CRÍTICO: Garante que o texto que sai da área seja escondido */
-    overflow: hidden; 
+    overflow: hidden; /* Esconde o que está fora */
     width: 100%;
     height: 100%;
     display: flex;
-    /* (f) Alinhamento: Centraliza o texto verticalmente dentro da área visível */
-    align-items: center; 
+    align-items: center; /* Alinhamento vertical */
 }
 
 .marquee {
+    /* CRÍTICO: Garante que o movimento funcione corretamente */
+    position: relative; 
+    
     display: inline-block;
-    white-space: nowrap; /* Não quebra a linha */
+    white-space: nowrap; /* Impede quebra de linha */
     font-size: 3em; 
-    /* Cor do texto: Branco puro para o máximo de contraste */
-    color: #ffffff; 
+    color: #ffffff; /* Texto branco (visível) */
     font-weight: 900;
     
-    /* (g) APLICAÇÃO CRÍTICA DA ANIMAÇÃO: */
-    /* Nome da animação | Velocidade (12s) | Linear | Infinito | Bidirecional (volta) */
+    /* Aplica a animação: 12s de duração, repete e volta (alternate) */
     animation: slide-marquee 12s linear infinite alternate; 
 }
 
-/* DEFINIÇÃO DA ANIMAÇÃO */
+/* Definição do movimento de ida e volta */
 @keyframes slide-marquee {
-    /* 0% (Início): O texto está fora da tela pela direita. */
-    /* Isso faz com que ele "entre" pelo lado esquerdo. (b) Inicia da esquerda para a direita */
+    /* Começa fora da tela pela direita (efeito de entrar pela esquerda) */
     0% {
         transform: translateX(100%);
     }
-    /* 100% (Fim): O texto está fora da tela pela esquerda. */
-    /* (a) Desliza até o outro lado */
+    /* Termina fora da tela pela esquerda */
     100% {
         transform: translateX(-100%); 
     }

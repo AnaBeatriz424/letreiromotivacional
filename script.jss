@@ -1,9 +1,14 @@
 /* ARQUIVO: script.js */
 
-// (c) Frase motivacional
+// Frase motivacional
 const fraseMotivacional = "🌟 A persistência realiza o impossível. Não desista do seu código! 💡";
 
 const marqueeElement = document.getElementById('marqueeText');
 
-// Insere a frase no elemento do letreiro
-marqueeElement.textContent = fraseMotivacional;
+// CRÍTICO: Verifica se o elemento existe antes de tentar inserir o texto
+if (marqueeElement) {
+    marqueeElement.textContent = fraseMotivacional;
+} else {
+    // Apenas para debug, caso o elemento não seja encontrado
+    console.error("Erro: O elemento com ID 'marqueeText' não foi encontrado no HTML.");
+}
